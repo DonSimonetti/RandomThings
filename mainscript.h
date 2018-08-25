@@ -7,7 +7,6 @@
 
 #include <string>
 
-bool onGameModeInit();
 bool onPlayerCommandText(int playerid,const std::string & cmdtext);
 
 #endif //HELLOWORLD_MAINSCRIPT_H

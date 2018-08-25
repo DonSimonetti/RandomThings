@@ -8,13 +8,6 @@
 
 using sampgdk::logprintf;
 
-bool onGameModeInit()
-{
-    logprintf("tEsT");
-    SetGameModeText("C++ on SAMP!");
-    return true;
-}
-
 bool onPlayerCommandText(int playerid, const std::string & cmdtext)
 {
     SendClientMessage(playerid,-1,cmdtext.c_str());
