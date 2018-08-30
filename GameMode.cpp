@@ -17,7 +17,7 @@ MapsList * mapsList;
 
 bool onGameModeInit()
 {
-    sampgdk_InvokeNative(sampgdk_FindNative("AddServerRule"),"sdd","GM build",buildNumber,3);
+    sampgdk_InvokeNative(sampgdk_FindNative("AddServerRule"),"ssd","GM build",string(""+buildNumber).c_str(),3);
 
     SetGameModeText("RandomThings++");
     SetServerLanguage("English/Italian");
@@ -50,6 +50,9 @@ void loadMaps()
 
     Map * spawnMap=new Map("spawnpoint.pwn",1000.0);//Only supports CreateObject
     mapsList->vector.push_back(spawnMap);
+
+    Map * usabaseMap=new Map("baseusa.pwn",1000.0);
+    mapsList->vector.push_back(usabaseMap);
 }
 
 bool isValidSkin(int skinid)
