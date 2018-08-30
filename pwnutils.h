@@ -7,6 +7,11 @@
 
 #include <string>
 
+using std::string;
+
 void SetServerLanguage(std::string lang);
+const std::string GetPlayerNameStr(int playerid);
+string getCurrentDirectory();
+bool fileExists(const string & file);
 
 #endif //TESTGDK_PWNUTILS_H

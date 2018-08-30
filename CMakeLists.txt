@@ -1,5 +1,6 @@
-project(SCA2)
+project(RandomThings)
 
+set(CMAKE_CXX_STANDARD 11)
 cmake_minimum_required(VERSION 3.10)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -13,4 +14,4 @@ include_directories(
 
 add_definitions(-DSAMPGDK_AMALGAMATION)
 
-add_samp_plugin(SCA2 amxplugin.cpp library.cpp mainscript.h mainscript.cpp mdf.def sampgdk.c sampgdk.h pwnutils.h pwnutils.cpp)
+add_samp_plugin(RandomThings amxplugin.cpp library.cpp mdf.def sampgdk.c sampgdk.h pwnutils.h pwnutils.cpp GameMode.h GameMode.cpp Map.h Map.cpp MapsList.h MapsList.cpp)

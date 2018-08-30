@@ -1,46 +1,56 @@
 #include <cstdio>
 #include <cstring>
 #include <string>
+//#include <map>
 
 #include "sampgdk.h"
-#include "mainscript.h"
+#include "GameMode.h"
 
 using sampgdk::logprintf;
+using std::string;
+
+//std::map<int, Player*> players;
 
 void SAMPGDK_CALL PrintTickCountTimer(int timerid, void *params) {
   sampgdk::logprintf("Tick count: %d", GetTickCount());
 }
 
+PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeInit()
+{
+    return onGameModeInit();
+}
+
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerConnect(int playerid)
 {
-    SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to the HelloWorld server!");
-    return true;
+    return onPlayerConnect(playerid);
 }
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerRequestClass(int playerid, int classid)
 {
-  SetPlayerPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
-  SetPlayerCameraPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
-  SetPlayerCameraLookAt(playerid, 1958.3783f, 1343.1572f, 15.3746f, CAMERA_CUT);
-  return true;
+    SetPlayerPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
+    SetPlayerCameraPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
+    SetPlayerCameraLookAt(playerid, 1958.3783f, 1343.1572f, 15.3746f, CAMERA_CUT);
+    return true;
 }
 
-PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerCommandText(int playerid, const char *cmdtext)
+PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerClickMap(int playerid, float fX,float fY,float fZ)
 {
-  const std::string command(cmdtext);
-  return onPlayerCommandText(playerid,command);
+    SetPlayerPos(playerid,fX,fY,fZ);
+    return true;
 }
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports() {
   return sampgdk::Supports() | SUPPORTS_PROCESS_TICK;
 }
 
-PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData) {
-  return sampgdk::Load(ppData);
+PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
+{
+    return sampgdk::Load(ppData);
 }
 
-PLUGIN_EXPORT void PLUGIN_CALL Unload() {
-  sampgdk::Unload();
+PLUGIN_EXPORT void PLUGIN_CALL Unload()
+{
+    sampgdk::Unload();
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick() {
