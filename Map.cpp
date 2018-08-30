@@ -58,5 +58,5 @@ void Map::loadMap()
         }
     }
     else
-        logprintf("  [RandomThings] Requested loading Map \" %s \" but file doesn't exist. Skipped.",name.c_str());
+        logprintf("  [RandomThings] Requested loading Map \" %s \" but file doesn't exist. Skipped.",mapdir.c_str());
 }

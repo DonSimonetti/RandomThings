@@ -11,10 +11,14 @@
 using sampgdk::logprintf;
 using std::string;
 
+unsigned int buildNumber=BUILD_REVISION;
+
 MapsList * mapsList;
 
 bool onGameModeInit()
 {
+    sampgdk_InvokeNative(sampgdk_FindNative("AddServerRule"),"sdd","GM build",buildNumber,3);
+
     SetGameModeText("RandomThings++");
     SetServerLanguage("English/Italian");
     loadMaps();

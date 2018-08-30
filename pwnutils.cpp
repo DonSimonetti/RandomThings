@@ -4,6 +4,7 @@
 
 #include <unistd.h>
 #include <fstream>
+#include <memory>
 #include "pwnutils.h"
 #include "sampgdk.h"
 
@@ -26,10 +27,9 @@ const std::string GetPlayerNameStr(int playerid)
 
 string getCurrentDirectory()
 {
-    char * buf=new char[32];
-    getcwd(buf,32);
-    string dir(buf);
-    delete [] buf;
+    std::unique_ptr<char> buf(new char[64]);
+    getcwd(buf.get(),64);
+    string dir(buf.get());
     return dir;
 }
 
