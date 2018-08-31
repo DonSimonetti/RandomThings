@@ -17,7 +17,8 @@ void SAMPGDK_CALL PrintTickCountTimer(int timerid, void *params) {
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeInit()
 {
-    return onGameModeInit();
+    onGameModeInit();
+    return true;
 }
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerConnect(int playerid)
