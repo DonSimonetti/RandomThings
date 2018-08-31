@@ -3,6 +3,8 @@
 //
 #include <unistd.h>
 #include <fstream>
+#include <string>
+#include <sstream>
 #include "GameMode.h"
 #include "pwnutils.h"
 #include "Map.h"
@@ -15,20 +17,20 @@ unsigned int buildNumber=BUILD_REVISION;
 
 MapsList * mapsList;
 
-bool onGameModeInit()
+void onGameModeInit()
 {
-    sampgdk_InvokeNative(sampgdk_FindNative("AddServerRule"),"ssd","GM build",string(""+buildNumber).c_str(),3);
+    AddServerRule("GM Build Version","Gm build version");
 
     SetGameModeText("RandomThings++");
     SetServerLanguage("English/Italian");
+
     loadMaps();
 
-    //Classes
+    //PlayerClasses
     for(int s = 0; s < 299; s++)
     {
         if(isValidSkin(s)) AddPlayerClass(s, 493.0551,-2667.4963,58.9676, 180, -1, -1, -1, -1, -1, -1);
     }
-    return true;
 }
 
 bool onGameModeExit()

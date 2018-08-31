@@ -9,7 +9,7 @@
 #include "sampgdk.h"
 
 //Callbacks
-bool onGameModeInit();
+void onGameModeInit();
 bool onGameModeExit();
 bool onPlayerConnect(int playerid);
 //functions
