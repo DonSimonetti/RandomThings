@@ -3,11 +3,13 @@
 //
 
 #include <unistd.h>
+#include <cstring>
 #include <fstream>
 #include <memory>
 #include "pwnutils.h"
 #include "sampgdk.h"
 
+using sampgdk::logprintf;
 using std::string;
 
 void SetServerLanguage(std::string lang)
@@ -37,4 +39,16 @@ bool fileExists(const string & file)
 {
     std::ifstream infile(file.c_str());
     return infile.good();
+}
+
+void AddServerRule(const std::string name, const string value, int flag)
+{
+    static AMX_NATIVE native=sampgdk_FindNative("AddServerRule");
+    if(native!=NULL)
+    {
+        logprintf(" %s %s %d", name.c_str(), value.c_str(), flag);
+
+        //sampgdk_InvokeNative(native, "ssi", name.c_str(), value.c_str(), flag);
+        logprintf("entered--");
+    }
 }
