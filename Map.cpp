@@ -55,6 +55,8 @@ void Map::loadMap()
                     logprintf("  Error: Object %d has wrong format",objNumber);
             }
             mapfile.close();
+
+            logprintf("  [RandomThings] Loading Completed!");
         }
     }
     else
