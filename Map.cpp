@@ -38,21 +38,16 @@ void Map::loadMap()
             int objNumber=0;
             while(getline(mapfile,line))
             {
-                objNumber++;
-                line.erase(0,line.find("CreateObject(")+string("CreateObject(").length());
-                line.erase(line.find_last_of(")"), line.length());
+                if(line.find("CreateObject(")!=std::string::npos) {
 
-                unsigned int modelid;
-                float posX,posY,posZ,rotX,rotY,rotZ;
-                int succCode=sscanf(line.c_str(),"%u,%f,%f,%f,%f,%f,%f",&modelid,&posX,&posY,&posZ,&rotX,&rotY,&rotZ);
-
-                if(succCode==7)
-                {
-                    int obj=CreateObject(modelid,posX,posY,posZ,rotX,rotY,rotZ,drawDistance);
-                    objects.push_back(obj);
+                    objNumber++;
+                    loadStandardObject(line,objNumber);
                 }
-                else
-                    logprintf("  Error: Object %d has wrong format",objNumber);
+                else if(line.find("CreateObject(")!=std::string::npos)
+                {
+                    objNumber++;
+                    loadDynamicObject(line, objNumber);
+                }
             }
             mapfile.close();
 
@@ -61,4 +56,40 @@ void Map::loadMap()
     }
     else
         logprintf("  [RandomThings] Requested loading Map \" %s \" but file doesn't exist. Skipped.",mapdir.c_str());
+}
+
+void Map::loadStandardObject(string line, int index)
+{
+    line.erase(0, line.find("CreateObject(") + string("CreateObject(").length());
+    line.erase(line.find_last_of(")"), line.length());
+
+    unsigned int modelid;
+    float posX, posY, posZ, rotX, rotY, rotZ;
+    int succCode = sscanf(line.c_str(), "%u,%f,%f,%f,%f,%f,%f", &modelid, &posX, &posY, &posZ, &rotX, &rotY, &rotZ);
+
+    if (succCode == 7) {
+        int obj = CreateObject(modelid, posX, posY, posZ, rotX, rotY, rotZ, drawDistance);
+        objects.push_back(obj);
+    }
+    else
+        logprintf("  Error: Object %d has wrong format",index);
+}
+
+void Map::loadDynamicObject(std::string line, int index)
+{
+    line.erase(0, line.find("CreateDynamicObject(") + string("CreateDynamicObject(").length());
+    line.erase(line.find_last_of(")"), line.length());
+
+    unsigned int modelid;
+    float posX, posY, posZ, rotX, rotY, rotZ;
+    int succCode = sscanf(line.c_str(), "%u,%f,%f,%f,%f,%f,%f", &modelid, &posX, &posY, &posZ, &rotX, &rotY, &rotZ);
+
+    if (succCode == 7)
+    {
+        requiredStreamer=true;
+        int obj = CreateObject(modelid, posX, posY, posZ, rotX, rotY, rotZ, drawDistance);
+        objects.push_back(obj);
+    }
+    else
+        logprintf("  Error: Object %d has wrong format",index);
 }

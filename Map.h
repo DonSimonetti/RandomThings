@@ -18,8 +18,11 @@ private:
     std::string name;
     float drawDistance;
     std::vector<int> objects;
+    bool requiredStreamer=false;
 
     void loadMap();
+    void loadStandardObject(std::string line, int index);
+    void loadDynamicObject(std::string line, int index);
 };
 
 
