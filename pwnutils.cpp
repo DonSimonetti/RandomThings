@@ -46,9 +46,9 @@ void AddServerRule(const std::string name, const string value, int flag)
     static AMX_NATIVE native=sampgdk_FindNative("AddServerRule");
     if(native!=NULL)
     {
-        logprintf(" %s %s %d", name.c_str(), value.c_str(), flag);
+        logprintf("  [RandomThings] \"AddServerRule\" function is currently disabled due to crash");
 
-        //sampgdk_InvokeNative(native, "ssi", name.c_str(), value.c_str(), flag);
-        logprintf("entered--");
+        //int ret=sampgdk_InvokeNative(native, "a[*4]a[*4]d", string(name).c_str(), string(value).c_str(), flag,name.length()-1,value.length()-1);
+        //logprintf("ret: %d",ret);
     }
 }
