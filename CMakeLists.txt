@@ -22,4 +22,4 @@ endif()
 
 add_definitions(-DBUILD_REVISION=${BUILD_REVISION})
 
-add_samp_plugin(RandomThings amxplugin.cpp library.cpp mdf.def sampgdk.c sampgdk.h pwnutils.h pwnutils.cpp GameMode.h GameMode.cpp Map.h Map.cpp MapsList.h MapsList.cpp)
+add_samp_plugin(RandomThings amxplugin.cpp library.cpp mdf.def sampgdk.c sampgdk.h pwnutils.h pwnutils.cpp GameMode.h GameMode.cpp Map.h Map.cpp MapsList.h MapsList.cpp Colors.h)
