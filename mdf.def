@@ -7,4 +7,5 @@ EXPORTS
 	OnPlayerConnect
 	OnPlayerDisconnect
 	OnPlayerRequestClass
+	OnPlayerSpawn
 	OnPlayerCommandText
