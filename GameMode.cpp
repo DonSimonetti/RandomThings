@@ -20,6 +20,15 @@ MapsList * mapsList;
 
 void onGameModeInit()
 {
+    /*
+    int num_natives;
+    const AMX_NATIVE_INFO *natives = sampgdk_GetNatives(&num_natives);
+    for (int i = 0; i < num_natives; i++) {
+        logprintf("%s",natives[i].name);
+    }
+    */
+
+
     AddServerRule("GM Build Version","Gm build version");
 
     SetGameModeText("Freeroam");
@@ -43,6 +52,12 @@ bool onPlayerConnect(int playerid)
 {
     string msg(GetPlayerNameStr(playerid));
     msg.append("{FFFFFF} joined the server!");
+    AMX_NATIVE sampp=sampgdk_FindNative("IsUsingSAMPP");
+    if(sampp)
+    {
+        if(sampgdk_InvokeNative(sampp,"d",playerid))
+            msg.append(" [SAMP+ User]");
+    }
     SendClientMessageToAll(COLOR_CONNECTED,msg.c_str());
     PlayerPlaySound(playerid,1097,0.0,0.0,0.0);
     SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL,40);
