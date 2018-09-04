@@ -26,12 +26,24 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerConnect(int playerid)
     return onPlayerConnect(playerid);
 }
 
+PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerDisconnect(int playerid, int reason)
+{
+    return onPlayerDisconnect(playerid,reason);
+}
+
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerRequestClass(int playerid, int classid)
 {
-    SetPlayerPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
-    SetPlayerCameraPos(playerid, 1958.3783f, 1343.1572f, 15.3746f);
-    SetPlayerCameraLookAt(playerid, 1958.3783f, 1343.1572f, 15.3746f, CAMERA_CUT);
-    return true;
+    return onPlayerRequestClass(playerid,classid);
+}
+
+PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerSpawn(int playerid)
+{
+    return onPlayerSpawn(playerid);
+}
+
+PLUGIN_EXPORT bool OnPlayerCommandText(int playerid, const char * cmdtext)
+{
+    return onPlayerCommandText(playerid,string(cmdtext));
 }
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerClickMap(int playerid, float fX,float fY,float fZ)
