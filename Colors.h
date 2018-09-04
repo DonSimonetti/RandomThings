@@ -1,0 +1,14 @@
+//
+// Created by matteo on 04/09/18.
+//
+
+#ifndef RANDOMTHINGS_COLORS_H
+#define RANDOMTHINGS_COLORS_H
+
+
+#define COLOR_CONNECTED 0x55FF00FF
+
+#define COLOR_ERR 0x969696FF
+#define COLOR_CRASH COLOR_ERR
+
+#endif //RANDOMTHINGS_COLORS_H
